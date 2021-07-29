@@ -25,14 +25,8 @@ fn get_remote_config() -> String {
                 != "A minimal Travis setup could look like this (requires Rust 1.24.0 or greater):",
             _ => true,
         })
-        .skip_while(|event| match *event {
-            Event::Start(Tag::CodeBlock(_)) => false,
-            _ => true,
-        })
-        .take_while(|event| match *event {
-            Event::End(Tag::CodeBlock(_)) => false,
-            _ => true,
-        });
+        .skip_while(|event| !matches!(*event, Event::Start(Tag::CodeBlock(_))))
+        .take_while(|event| !matches!(*event, Event::End(Tag::CodeBlock(_))));
 
     let mut block = vec![];
     for event in parser {
