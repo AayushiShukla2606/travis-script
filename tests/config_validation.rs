@@ -20,17 +20,17 @@ fn get_remote_config() -> String {
 
     // Extract the config snippet from the README.
     let parser = Parser::new(&remote_config)
-        .skip_while(|event| match event {
-            &Event::Text(ref s) => s
+        .skip_while(|event| match *event {
+            Event::Text(ref s) => s
                 != "A minimal Travis setup could look like this (requires Rust 1.24.0 or greater):",
             _ => true,
         })
-        .skip_while(|event| match event {
-            &Event::Start(Tag::CodeBlock(_)) => false,
+        .skip_while(|event| match *event {
+            Event::Start(Tag::CodeBlock(_)) => false,
             _ => true,
         })
-        .take_while(|event| match event {
-            &Event::End(Tag::CodeBlock(_)) => false,
+        .take_while(|event| match *event {
+            Event::End(Tag::CodeBlock(_)) => false,
             _ => true,
         });
 
@@ -39,7 +39,7 @@ fn get_remote_config() -> String {
         match event {
             Event::Start(Tag::CodeBlock(attr)) => assert!(attr == "yaml"),
             Event::Text(s) => block.push(s.into_owned()),
-            _ => assert!(false),
+            _ => panic!(),
         }
     }
 
