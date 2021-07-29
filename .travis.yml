@@ -1,7 +1,36 @@
 language: rust
+cache: cargo
+rust:
+- stable
+- beta
+- nightly
+os:
+- linux
+- osx
+- windows
+matrix:
+  allow_failures:
+  - rust: nightly
 before_script:
+- rustup update
+- rustup component add clippy-preview
 - rustup component add rustfmt
 script:
-- cargo build
-- cargo test
 - cargo fmt --all -- --check
+- cargo clippy --all --tests -- --deny=warnings
+- export RUSTFLAGS="-D warnings"
+- cargo build --verbose
+- cargo test --verbose
+- if [[ $(rustup default) == *"nightly"* ]]; then cargo bench -- --nocapture; fi
+
+before_deploy:
+- cargo doc
+- cargo package
+deploy:
+  provider: releases
+  on:
+    tags: true
+    repo: AayushiShukla2606/travis-script
+    branch: master
+after_deploy:
+- cargo publish --token "$CRATES_IO_TOKEN"
