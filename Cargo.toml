@@ -1,7 +1,7 @@
 [package]
-name = "rustfmt-travis"
+name = "travis-script"
 version = "0.1.0"
-authors = ["David Alber <alber.david@gmail.com>"]
+authors = ["David Alber <aayushishuklartm@gmail.com>"]
 
 [dev-dependencies]
 pulldown-cmark = "0.2.0"
