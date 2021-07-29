@@ -34,6 +34,7 @@ jobs:
       - run: rustup component add clippy
       - run: cargo build
       - run: cargo test
+          RUST_BACKTRACE=1
       - run: cargo fmt --all -- --check
       - run: cargo clippy --all --tests -- --deny warnings
       - run: cargo package
