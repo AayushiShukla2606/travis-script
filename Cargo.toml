@@ -1,7 +1,8 @@
 [package]
 name = "travis-script"
 version = "0.1.0"
-authors = ["David Alber <aayushishuklartm@gmail.com>"]
+authors = ["AS <aayushishuklartm@gmail.com>"]
+description = "A short description of my package"
 
 [dev-dependencies]
 pulldown-cmark = "0.2.0"
