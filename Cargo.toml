@@ -1,7 +1,7 @@
 [package]
 name = "travis-script"
 version = "0.1.0"
-authors = ["AS <aayushishuklartm@gmail.com>"]
+authors = ["Aayushi Shukla <aayushishuklartm@gmail.com>"]
 description = "A short description of my package"
 repository = "https://github.com/AayushiShukla2606/travis-script"
 license = "Apache-2.0"
