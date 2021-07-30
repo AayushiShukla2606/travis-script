@@ -1,7 +1,8 @@
 #[cfg(test)]
 mod tests {
     #[test]
-    fn exploration() {
-        assert_eq!(4, 4);
+    fn it_works() {
+        # let a = 4;
+        assert_eq!(a, a);
     }
 }
