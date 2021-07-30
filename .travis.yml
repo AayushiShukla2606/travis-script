@@ -8,20 +8,12 @@ os:
 - linux
 - osx
 - windows
-matrix:
-  allow_failures:
-  - rust: nightly
 before_script:
-- rustup update
-- rustup component add clippy-preview
 - rustup component add rustfmt
 script:
+- cargo build
+- cargo test
 - cargo fmt --all -- --check
-- cargo clippy --all --tests -- --deny=warnings
-- export RUSTFLAGS="-D warnings"
-- cargo build --verbose
-- cargo test --verbose
-- if [[ $(rustup default) == *"nightly"* ]]; then cargo bench -- --nocapture; fi
 
 before_deploy:
 - cargo doc
