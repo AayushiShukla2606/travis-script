@@ -46,8 +46,5 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - run: cargo login $CRATES_IO_TOKEN
-      - run: cargo publish --dry-run
+      - run: cargo login ${{ secrets.CRATES_IO_TOKEN }}
       - run: cargo publish
-    env:
-          CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}  
